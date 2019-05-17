@@ -1,6 +1,12 @@
 package jcinema;
 import java.io.*;
-
+/**
+ * Class CustomerAlreadyExistsException
+ * Merupakan exception customer untuk customer yang sudah ada
+ *
+ * @author Kelompok 16
+ * @version V.1.0 (17/05/19)
+ */
 public class CustomerAlreadyExistsException extends Exception{
     private Customer customer_error;
 

@@ -4,10 +4,11 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 /**
- * Merupakan Class Invoice.
+ * Class invoice
+ * Merupakan class invoice dari Cinemania, untuk membuat invoice
  *
- * @author Muhammad Wito Malik
- * @version 28/02/2019
+ * @author Kelompok 16
+ * @version V.1.0 (17/05/19)
  */
 
 public abstract class Invoice
@@ -21,6 +22,9 @@ public abstract class Invoice
 
     public Invoice(ArrayList<Integer> ticket)
     {
+        /*
+         * method untuk mendapatkan harga dari ticket yang dibeli dari database invoice
+         */
         this.id = DatabaseInvoice.getLastInvoiceID() + 1;
         setTicket(ticket);
         for(Integer i : this.ticket)
@@ -30,6 +34,9 @@ public abstract class Invoice
         date = GregorianCalendar.getInstance();
     }
 
+    /*
+     * method untuk mendapatkan harga dari ticket yang dibeli
+     */
     public Invoice(int id, ArrayList<Integer> ticket)
     {
         setTicket(ticket);
@@ -40,50 +47,100 @@ public abstract class Invoice
         date = GregorianCalendar.getInstance();
     }
 
-public int getId()
+    /**
+     * Accessor untuk object dari class Invoice
+     * untuk mendapatkan nilai id.
+     *
+     * @return id
+     */
+    public int getId()
 {
     return id;
 }
 
-public ArrayList<Integer> getTicket()
+    /**
+     *  Accessor untuk object dari class Invoice
+     *  untuk mendapatkan nilai ticket.
+     *
+     *  @return ticket
+     */
+    public ArrayList<Integer> getTicket()
 {
     return ticket;
 }
 
+    /**
+     * Accessor untuk object dari class Invoice
+     * untuk mendapatkan nilai date.
+     *
+     * @return date
+     */
 public Calendar getDate()
 {
     return date;
 }
 
-public int getTotalPrice()
+    /**
+     * Accessor untuk object dari class Invoice
+     * untuk mendapatkan nilai totalprice.
+     *
+     * @return totalPrice
+     */
+    public int getTotalPrice()
 {
     return totalPrice;
 }
 
-public Customer getCustomer()
+    /**
+     * Accessor untuk object dari class Invoice
+     * untuk mendapatkan nilai Customer.
+     *
+     * @return customer
+     */
+    public Customer getCustomer()
     {
         return customer;
     }
 
-public void setId (int id)
+    /**
+     * Mutator untuk menginput ID baru
+     *
+     * @param id
+     */
+    public void setId (int id)
 {
     this.id=id;
 }
 
-public void setTicket (ArrayList<Integer> ticket)
+    /**
+     * Mutator untuk menginput Ticket baru
+     *
+     * @param ticket
+     */
+    public void setTicket (ArrayList<Integer> ticket)
 {
     this.ticket=ticket;
 }
 
-public void setDate (Calendar date)
+    /**
+     * Mutator untuk menginput date baru
+     *
+     * @param date
+     */
+    public void setDate (Calendar date)
 {
     this.date=date;
 }
 
-public void setTotalPrice (int totalPrice) {
+    /**
+     * Mutator untuk menginput totalprice baru
+     *
+     * @param totalPrice
+     */
+    public void setTotalPrice (int totalPrice) {
     this.totalPrice = totalPrice;
 }
 
-public abstract String toString();
+    public abstract String toString();
 
 }

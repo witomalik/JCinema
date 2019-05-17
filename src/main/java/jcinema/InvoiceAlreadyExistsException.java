@@ -1,5 +1,11 @@
 package jcinema;
-
+/**
+ * Class InvoiceAlreadyExistsException
+ * Merupakan exception invoice untuk invoice yang sudah ada
+ *
+ * @author Kelompok 16
+ * @version V.1.0 (17/05/19)
+ */
 public class InvoiceAlreadyExistsException extends Exception
 {
     private Invoice invoice_error;

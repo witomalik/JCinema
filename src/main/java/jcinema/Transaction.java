@@ -1,6 +1,12 @@
 package jcinema;
 import java.util.ArrayList;
-
+/**
+ * Class Ticket
+ * Merupakan class transaction dari Cinemania, untuk membuat transaction
+ *
+ * @author Kelompok 16
+ * @version V.1.0 (17/05/19)
+ */
 public class Transaction
 {
 

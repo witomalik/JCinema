@@ -1,4 +1,11 @@
 package jcinema;
+/**
+ * Class EventNotFoundException
+ * Merupakan exception event untuk event yang belum pernah dimasukkan/tidak tersedia
+ *
+ * @author Kelompok 16
+ * @version V.1.0 (17/05/19)
+ */
 public class EventNotFoundException extends Exception
 {
     private int event_error;

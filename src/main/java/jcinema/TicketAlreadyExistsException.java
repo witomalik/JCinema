@@ -1,4 +1,11 @@
 package jcinema;
+/**
+ * Class TicketAlreadyExistsException
+ * Merupakan exception Ticket untuk ticket yang sudah ada
+ *
+ * @author Kelompok 16
+ * @version V.1.0 (17/05/19)
+ */
 public class TicketAlreadyExistsException extends Exception
 {
     private Ticket ticket_error;

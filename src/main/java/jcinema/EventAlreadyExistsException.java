@@ -3,6 +3,14 @@ package jcinema;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+
+/**
+ * Class EventAlreadyExistsException
+ * Merupakan exception event untuk event yang sudah ada
+ *
+ * @author Kelompok 16
+ * @version V.1.0 (17/05/19)
+ */
 public class EventAlreadyExistsException extends Exception
 {
     private Event event_error;

@@ -1,7 +1,13 @@
 package jcinema;
 import java.lang.*;
 import java.io.*;
-
+/**
+ * Class CustomerNotFoundException
+ * Merupakan exception customer untuk customer yang belum pernah dimasukkan/tidak tersedia
+ *
+ * @author Kelompok 16
+ * @version V.1.0 (17/05/19)
+ */
 public class CustomerNotFoundException extends Exception{
     private int customer_error;
 
