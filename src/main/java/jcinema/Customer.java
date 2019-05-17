@@ -33,6 +33,15 @@ public class Customer
         setBirthDate(year, month, dayOfMonth);
     }
 
+    public Customer(int id, String name,String email,String password,int year,int month,int dayOfMonth)
+    {
+        // initialise instance variables
+        setName(name);
+        setEmail(email);
+        setPassword(password);
+        setBirthDate(year, month, dayOfMonth);
+    }
+
     public String getName()
     {
         return name;

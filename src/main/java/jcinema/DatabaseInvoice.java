@@ -24,8 +24,7 @@ public class DatabaseInvoice
         return LAST_INVOICE_ID;
     }
 
-    public static boolean addInvoice (Invoice invoice)
-            throws InvoiceAlreadyExistsException{
+    public static boolean addInvoice (Invoice invoice) throws InvoiceAlreadyExistsException{
         for(Invoice temp : INVOICE_DATABASE){
             if(invoice.getCustomer() == temp.getCustomer() && invoice.getTicket() == temp.getTicket()){
                 throw new InvoiceAlreadyExistsException(invoice);
@@ -40,12 +39,26 @@ public class DatabaseInvoice
 
     public static boolean removeInvoice(int id) throws InvoiceNotFoundException
     {
-        for(Invoice invoiceDB : INVOICE_DATABASE)
-        {
+        for(Invoice invoiceDB : INVOICE_DATABASE) {
+            if (id == invoiceDB.getId()) {
                 INVOICE_DATABASE.remove(invoiceDB);
                 return true;
+            }
         }
         throw new InvoiceNotFoundException(id);
+    }
+
+    public static boolean updateInvoice (int id, Invoice invoice) throws InvoiceAlreadyExistsException{
+        for(Invoice invoiceDB : INVOICE_DATABASE)
+        {
+            if (id == invoiceDB.getId()) {
+                if(invoice.getCustomer() == invoiceDB.getCustomer() && invoice.getTicket() == invoiceDB.getTicket()){
+                    throw new InvoiceAlreadyExistsException(invoice);
+                }
+            }
+            INVOICE_DATABASE.set((id-1), invoice);
+        }
+        return true;
     }
 
 }

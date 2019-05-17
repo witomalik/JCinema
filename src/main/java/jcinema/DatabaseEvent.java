@@ -1,8 +1,5 @@
 package jcinema;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 public class DatabaseEvent
 {
@@ -48,6 +45,21 @@ public class DatabaseEvent
             }
         }
         throw new EventNotFoundException(id);
+    }
+
+    public static boolean updateEvent(int id, Event event) throws EventAlreadyExistsException{
+        for (Event event1 : EVENT_DATABASE) {
+            if (id == event1.getId()) {
+                if ((event.getTitle().equals(event1.getTitle())) && (event.getSchedule().equals(event1.getSchedule()))) {
+                    throw new EventAlreadyExistsException(event);
+
+                }
+
+            }
+            EVENT_DATABASE.set((id-1), event);
+
+        }
+        return true;
     }
 
 }

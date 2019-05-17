@@ -55,4 +55,18 @@ public class DatabaseCustomer {
         }
         throw new CustomerNotFoundException(id);
     }
+
+    public static boolean updateCustomer(int id, Customer customer) throws CustomerAlreadyExistsException {
+        for (Customer customer1 : CUSTOMER_DATABASE) {
+            if (customer1.getId() == id) {
+                if (customer1.getName().equals(customer.getName()) || customer1.getEmail().equals(customer.getEmail())) {
+                    throw new CustomerAlreadyExistsException(customer1);
+                }
+            }
+            CUSTOMER_DATABASE.set((id - 1), customer);
+        }
+        return true;
+    }
 }
+
+

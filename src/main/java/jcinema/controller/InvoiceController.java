@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class InvoiceController {
 
@@ -25,6 +24,19 @@ public class InvoiceController {
             if (tmp == true) {
                 return DatabaseInvoice.getInvoice(DatabaseInvoice.getLastInvoiceID());
             }
+        } catch (InvoiceAlreadyExistsException e) {
+            System.out.println(e.getExMessage());
+        }
+        return null;
+    }
+
+    @RequestMapping(value = "/updateteinvoicepaid", method = RequestMethod.POST)
+    public Invoice updateInvoicePaid(@RequestParam(value="idInvoice") int idInvoice,
+                                     @RequestParam(value="listTicket") ArrayList<Integer> listTicket,
+                                     @RequestParam(value="customerID") int customerID
+    ){
+        try{
+            DatabaseInvoice.updateInvoice(idInvoice, new Sell_Paid(listTicket, DatabaseCustomer.getCustomer(customerID)));
         } catch (InvoiceAlreadyExistsException e) {
             System.out.println(e.getExMessage());
         }

@@ -19,17 +19,26 @@ public abstract class Invoice
     private Calendar date;
     private Customer customer;
 
-public Invoice(ArrayList<Integer> ticket)
-{
-    this.id = DatabaseInvoice.getLastInvoiceID() + 1;
-    setTicket(ticket);
-    for(Integer i : this.ticket)
+    public Invoice(ArrayList<Integer> ticket)
     {
-        totalPrice = totalPrice + DatabaseTicket.getTicketFromID(i.intValue()).getPrice();
+        this.id = DatabaseInvoice.getLastInvoiceID() + 1;
+        setTicket(ticket);
+        for(Integer i : this.ticket)
+        {
+            totalPrice = totalPrice + DatabaseTicket.getTicketFromID(i.intValue()).getPrice();
+        }
+        date = GregorianCalendar.getInstance();
     }
-    date = GregorianCalendar.getInstance();
-}
 
+    public Invoice(int id, ArrayList<Integer> ticket)
+    {
+        setTicket(ticket);
+        for(Integer i : this.ticket)
+        {
+            totalPrice = totalPrice + DatabaseTicket.getTicketFromID(i.intValue()).getPrice();
+        }
+        date = GregorianCalendar.getInstance();
+    }
 
 public int getId()
 {

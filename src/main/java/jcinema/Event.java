@@ -17,6 +17,13 @@ public class Event
 		setId();
 	}
 
+	public Event(int id, String title, int year,int month,int dayOfMonth)
+	{
+		setTitle(title);
+		setSchedule(year, month, dayOfMonth);
+		this.id=id;
+	}
+
 	public String getTitle() {
 		return title;
 	}

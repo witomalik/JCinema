@@ -12,7 +12,7 @@ public class Ticket
     private int price;
     private Event event;
     private Category category;
-    int id;
+    private int id;
     
     /**
      * Constructor for objects of class Buy_Paid
@@ -23,6 +23,13 @@ public class Ticket
         setPrice(price);
         setCategory(category);
         setId();
+    }
+
+    public Ticket (int id, Event event, int price, Category category)
+    {
+        setEvent(event);
+        setPrice(price);
+        setCategory(category);
     }
    
     public int getPrice(){

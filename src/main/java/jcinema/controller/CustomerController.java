@@ -3,10 +3,8 @@ package jcinema.controller;
 import jcinema.*;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")   
 @RestController
 public class CustomerController {
 
@@ -50,10 +48,25 @@ public class CustomerController {
         return customerReply;
     }
 
-    @RequestMapping(value = "/customers", method = RequestMethod.GET)
-    public ArrayList<Customer> custList() {
-        return DatabaseCustomer.getCustomerDatabase();
-    }
+    @RequestMapping(value = "/updatecustomer", method = RequestMethod.POST)
+    public Customer updateCust(@RequestParam(value="idCustomer") int idCustomer,
+                               @RequestParam(value="name") String name,
+                               @RequestParam(value="email") String email,
+                               @RequestParam(value="password") String password,
+                               @RequestParam(value = "year", defaultValue = "1900") int year,
+                               @RequestParam(value = "month", defaultValue = "01") int month,
+                               @RequestParam(value = "dayOfMonth", defaultValue = "01") int dayOfMonth
+    )
+    {
+        Customer customer = new Customer(idCustomer, name, email, password, year, month, dayOfMonth);
+        try {
+            DatabaseCustomer.updateCustomer(idCustomer, customer);
+        } catch(CustomerAlreadyExistsException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
 
+        return customer;
+    }
 
 }

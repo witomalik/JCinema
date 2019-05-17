@@ -77,4 +77,20 @@ public class DatabaseTicket
         throw new TicketNotFoundException(id);
     }
 
+    public static boolean updateTicket(int id, Ticket ticket) throws TicketAlreadyExistsException{
+        for (Ticket ticket1 : TICKET_DATABASE) {
+            if (id == ticket1.getId()) {
+                if ((ticket.getEvent().equals(ticket1.getEvent())) && (ticket.getCategory()==ticket1.getCategory())) {
+                    throw new TicketAlreadyExistsException(ticket);
+
+                }
+
+            }
+            TICKET_DATABASE.set((id-1), ticket);
+
+        }
+        return true;
+    }
+
+
 }

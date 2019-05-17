@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class TicketController {
     @RequestMapping(value = "/ticket", method = RequestMethod.GET)
@@ -23,12 +22,12 @@ public class TicketController {
     @RequestMapping(value = "/createticket", method = RequestMethod.POST)
     public Ticket createTicket (@RequestParam(value="idEvent") int idEvent,
                                 @RequestParam(value="price") int price,
-                                @RequestParam(value="venue") String venue
+                                @RequestParam(value="category") String category
 
     ){
 
             try {
-                Category tempcat = Category.valueOf(venue);
+                Category tempcat = Category.valueOf(category);
                 DatabaseTicket.addTicket(new Ticket(DatabaseEvent.getEventFromID(idEvent), price, tempcat));
             } catch(TicketAlreadyExistsException ex) {
                 System.out.println(ex.getExMessage());
@@ -36,5 +35,24 @@ public class TicketController {
             }
 
             return DatabaseTicket.getTicketFromID(DatabaseTicket.getLastTicketID());
+    }
+
+    @RequestMapping(value = "/updateticket", method = RequestMethod.POST)
+    public Ticket updateTicket (@RequestParam(value="idTicket") int idTicket,
+                                @RequestParam(value="idEvent") int idEvent,
+                                @RequestParam(value="price") int price,
+                                @RequestParam(value="category") String category
+
+    ){
+
+        try {
+            Category tempcat = Category.valueOf(category);
+            DatabaseTicket.updateTicket(idTicket, new Ticket(idTicket, DatabaseEvent.getEventFromID(idEvent), price, tempcat));
+        } catch(TicketAlreadyExistsException ex) {
+            System.out.println(ex.getExMessage());
+            return null;
+        }
+
+        return DatabaseTicket.getTicketFromID(DatabaseTicket.getLastTicketID());
     }
 }
